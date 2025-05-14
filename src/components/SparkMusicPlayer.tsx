@@ -1105,7 +1105,7 @@ export default function SparkMusicPlayer() {
         <header className="mb-4">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-teal-400 flex items-center space-x-2">
-              <span>SparkMusic</span>
+              <span>SparkVibes</span>
               <Music className="ml-2 text-fuchsia-500" />
             </h1>
             {/* Search Bar */}
