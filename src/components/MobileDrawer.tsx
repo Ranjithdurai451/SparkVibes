@@ -266,7 +266,7 @@ const MobileDrawer = ({
       >
         <div
           ref={drawerRef}
-          className={`fixed bottom-0 left-0 right-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-950 rounded-t-3xl shadow-2xl transition-all duration-300 ease-in-out ${animationClass} h-[90vh] border-t border-purple-500/30`}
+          className={`fixed bottom-0 left-0 right-0 bg-gradient-to-br from-gray-900 via-gray-900 to-gray-950 rounded-t-3xl shadow-2xl transition-all duration-300 ease-in-out ${animationClass} h-[75vh] border-t border-purple-500/30`}
           onClick={(e) => e.stopPropagation()}
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
