@@ -550,10 +550,37 @@ export default function SparkMusicPlayer() {
       return null;
     }
   }, []);
+  const audioContextRef = useRef<AudioContext | null>(null);
+
+  const initializeAudio = async () => {
+    try {
+      if (audioContextRef.current) return;
+
+      const AudioContext =
+        window.AudioContext || (window as any).webkitAudioContext;
+      audioContextRef.current = new AudioContext();
+
+      // iOS requires a silent initial playback
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        const buffer = audioContextRef.current.createBuffer(1, 1, 22050);
+        const source = audioContextRef.current.createBufferSource();
+        source.buffer = buffer;
+        source.connect(audioContextRef.current.destination);
+        source.start(0);
+      }
+
+      if (audioContextRef.current.state === "suspended") {
+        await audioContextRef.current.resume();
+      }
+    } catch (error) {
+      console.error("Audio initialization error:", error);
+    }
+  };
 
   // Playback Control Functions
   const playSong = useCallback(
     async (song, newTab = null) => {
+      initializeAudio();
       // Update the active tab and content view if needed
       if (newTab) {
         setDrawer((prev) => ({ ...prev, activeTab: newTab }));
