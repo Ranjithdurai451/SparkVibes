@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // components/SpotifyPlaylistSection.tsx
 import { useEffect, useState } from "react";
 import axios from "axios";

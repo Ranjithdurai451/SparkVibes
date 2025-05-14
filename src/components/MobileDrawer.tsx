@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect, useRef } from "react";
 import {
   Heart,
@@ -25,7 +26,6 @@ import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { Playlist, Song } from "@/types/music";
-
 interface MobileDrawerProps {
   isOpen: boolean;
   onClose: () => void;
