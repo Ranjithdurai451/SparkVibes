@@ -88,34 +88,34 @@ export default function SparkMusicPlayer() {
     drawer.activeTab === "favorites"
       ? favorites
       : drawer.activeTab === "playlists" && currentPlaylist
-      ? currentPlaylist.songs
-      : searchResults;
+        ? currentPlaylist.songs
+        : searchResults;
   // console.log("currentList", currentList);
   // Get current content based on contentView state (no useMemo)
   const currentContent =
     contentView === "search"
       ? {
-          title: "Search Results",
-          items: searchResults,
-          type: "search",
-        }
+        title: "Search Results",
+        items: searchResults,
+        type: "search",
+      }
       : contentView === "favorites"
-      ? {
+        ? {
           title: `Favorites (${favorites.length})`,
           items: favorites,
           type: "favorites",
         }
-      : contentView === "playlists"
-      ? {
-          title: currentPlaylist?.name || "Playlist",
-          items: currentPlaylist?.songs || [],
-          type: "playlists",
-        }
-      : {
-          title: "Search Results",
-          items: searchResults,
-          type: "search",
-        };
+        : contentView === "playlists"
+          ? {
+            title: currentPlaylist?.name || "Playlist",
+            items: currentPlaylist?.songs || [],
+            type: "playlists",
+          }
+          : {
+            title: "Search Results",
+            items: searchResults,
+            type: "search",
+          };
 
   const currentSong = useMemo(
     () =>
@@ -217,7 +217,7 @@ export default function SparkMusicPlayer() {
         break;
       case "playlists":
         if (currentPlaylist) {
-          setContentView("playlist");
+          setContentView("playlists");
         }
         break;
     }
@@ -1049,13 +1049,12 @@ export default function SparkMusicPlayer() {
                     {favorites.map((song, index) => (
                       <li
                         key={song.id}
-                        className={`flex items-center justify-between p-2 rounded-lg group transition-all hover:bg-white/5 ${
-                          isPlaying &&
+                        className={`flex items-center justify-between p-2 rounded-lg group transition-all hover:bg-white/5 ${isPlaying &&
                           drawer.activeTab === "favorites" &&
                           currentSongIndex === index
-                            ? "bg-white/5"
-                            : ""
-                        }`}
+                          ? "bg-white/5"
+                          : ""
+                          }`}
                       >
                         <div
                           className="flex items-center flex-grow cursor-pointer overflow-hidden"
@@ -1103,9 +1102,8 @@ export default function SparkMusicPlayer() {
       </div>
       {/* Player Bar */}
       <div
-        className={`fixed bottom-0 left-0 right-0 transition-all duration-500 ease-in-out ${
-          currentSong ? "translate-y-0" : "translate-y-full"
-        }`}
+        className={`fixed bottom-0 left-0 right-0 transition-all duration-500 ease-in-out ${currentSong ? "translate-y-0" : "translate-y-full"
+          }`}
       >
         <div className="bg-black/90 backdrop-blur-xl border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 flex flex-col">
@@ -1176,11 +1174,10 @@ export default function SparkMusicPlayer() {
                     <button
                       onClick={togglePlayPause}
                       disabled={playerState.isBuffering}
-                      className={`rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all ${
-                        playerState.isBuffering
-                          ? "bg-gray-700 cursor-wait"
-                          : "bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 hover:scale-105"
-                      }`}
+                      className={`rounded-full w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all ${playerState.isBuffering
+                        ? "bg-gray-700 cursor-wait"
+                        : "bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 hover:scale-105"
+                        }`}
                     >
                       {playerState.isBuffering ? (
                         <Loader className="animate-spin h-5 w-5" />
